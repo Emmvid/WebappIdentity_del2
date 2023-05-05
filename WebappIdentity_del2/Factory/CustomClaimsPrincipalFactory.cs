@@ -21,7 +21,11 @@ namespace WebappIdentity_del2.Factory
             var claimsIdentity = await base.GenerateClaimsAsync(user);
             var userProfileEntity = await _userService.GetUserProfileAsync(user.Id);
 
-            claimsIdentity.AddClaim(new Claim("DisplayName", $"{userProfileEntity.FirstName}{userProfileEntity.LastName}"));
+            var roles = await UserManager.GetRolesAsync(user);
+
+            claimsIdentity.AddClaims(roles.Select(x => new Claim(ClaimTypes.Role, x)));
+
+            claimsIdentity.AddClaim(new Claim("DisplayName", $"{userProfileEntity.FirstName}  {userProfileEntity.LastName}"));
 
             return claimsIdentity;
         }

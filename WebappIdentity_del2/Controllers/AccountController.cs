@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WebappIdentity_del2.Services;
 using WebappIdentity_del2.ViewModels;
@@ -7,16 +8,20 @@ namespace WebappIdentity_del2.Controllers
 {
     public class AccountController : Controller
     {
+        private readonly UserService _userService;
         private readonly AuthService _auth;
 
-        public AccountController(AuthService auth)
+        public AccountController(UserService userService, AuthService auth)
         {
+            _userService = userService;
             _auth = auth;
         }
 
         [Authorize]
-        public IActionResult Index()
+        public IActionResult Index(IdentityUser user)
         {
+            var currentUser = _userService.GetUserProfileAsync(user.Id);
+
             return View();
         }
 
@@ -61,5 +66,7 @@ namespace WebappIdentity_del2.Controllers
 
             return RedirectToAction("Index");
         }
+
+      
     }
 }

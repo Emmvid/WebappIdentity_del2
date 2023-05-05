@@ -23,38 +23,31 @@ namespace WebappIdentity_del2.Services
             _roleManager = roleManager;
         }
 
+
         public async Task<bool> SignUpAsync(UserSignupViewModel model)
         {
             try
             {
                 await _seedService.SeedRoles();
-                 //Om det inte finns några användare eller roller, lägg till första användaren i adminrollen
                 var roleName = "user";
+
                 if (!await _userManager.Users.AnyAsync())
-                {
                     roleName = "admin";
-                }
-          
-                //skapar användare
+
                 IdentityUser identityUser = model;
                 await _userManager.CreateAsync(identityUser, model.Password);
-                //Om det finns använder, ger de rollen user
+
                 await _userManager.AddToRoleAsync(identityUser, roleName);
 
-                //skapar profilen
                 UserProfileEntity userProfileEntity = model;
                 userProfileEntity.UserId = identityUser.Id;
 
                 _identityContext.UserProfiles.Add(userProfileEntity);
-                //sparar ändringarna 
                 await _identityContext.SaveChangesAsync();
+
                 return true;
             }
-            catch
-            {
-                return false;
-            }
-
+            catch { return false; }
         }
 
         public async Task<bool> SignInAsync(UserSignInViewModel model)

@@ -7,9 +7,12 @@ namespace WebappIdentity_del2.Context;
 
 public class IdentityContext : IdentityDbContext
 {
-    public IdentityContext(DbContextOptions options) : base(options)
+    public IdentityContext(DbContextOptions<IdentityContext> options) : base(options)
     {
     }
-
     public DbSet<UserProfileEntity> UserProfiles { get; set; }
 }
+
+
+
+
