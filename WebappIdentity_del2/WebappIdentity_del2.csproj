@@ -7,6 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\Product\**" />
+    <Content Remove="Migrations\Product\**" />
+    <EmbeddedResource Remove="Migrations\Product\**" />
+    <None Remove="Migrations\Product\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Context\WebAppContext.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="compilerconfig.json" />
   </ItemGroup>
 
@@ -22,6 +33,10 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\images\products\" />
   </ItemGroup>
 
 </Project>

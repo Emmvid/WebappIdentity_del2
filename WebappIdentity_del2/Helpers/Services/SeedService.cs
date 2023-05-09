@@ -1,19 +1,21 @@
 ﻿using Microsoft.AspNetCore.Identity;
-namespace WebappIdentity_del2.Services;
+
+namespace WebappIdentity_del2.Helpers.Services;
 
 public class SeedService
 {
-    private  readonly RoleManager<IdentityRole> _roleManager;
+    private readonly RoleManager<IdentityRole> _roleManager;
 
     public SeedService(RoleManager<IdentityRole> roleManager)
     {
         _roleManager = roleManager;
     }
 
-    public  async Task SeedRoles()
+    public async Task SeedRoles()
     {
-        if(!await _roleManager.RoleExistsAsync("admin")){ 
-        await _roleManager.CreateAsync(new IdentityRole ("admin"));
+        if (!await _roleManager.RoleExistsAsync("admin"))
+        {
+            await _roleManager.CreateAsync(new IdentityRole("admin"));
         }
         if (!await _roleManager.RoleExistsAsync("user"))
         {

@@ -6,6 +6,8 @@
             @if (signInManager.IsSignedIn(User) && User.IsInRole("admin"))
             {
                 <a asp-action="Index" asp-controller="Admin" class="m-4"> Admin</a>
+                <a asp-action="Add" asp-controller="Product" class="m-4"> Add new products </a>
+
             }
 
         </nav>

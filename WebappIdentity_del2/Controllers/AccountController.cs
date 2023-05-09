@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using WebappIdentity_del2.Services;
+using WebappIdentity_del2.Helpers.Services;
 using WebappIdentity_del2.ViewModels;
 
 namespace WebappIdentity_del2.Controllers
@@ -10,19 +10,40 @@ namespace WebappIdentity_del2.Controllers
     {
         private readonly UserService _userService;
         private readonly AuthService _auth;
+        private readonly UserManager<IdentityUser> _userManager;
 
-        public AccountController(UserService userService, AuthService auth)
+        public AccountController(UserService userService, AuthService auth, UserManager<IdentityUser> userManager)
         {
             _userService = userService;
             _auth = auth;
+            _userManager = userManager;
         }
 
+      
         [Authorize]
-        public IActionResult Index(IdentityUser user)
+        public async Task<IActionResult> Index()
         {
-            var currentUser = _userService.GetUserProfileAsync(user.Id);
+            var user = await _userManager.GetUserAsync(User);
 
-            return View();
+          
+            var firstNameClaim = User.Claims.FirstOrDefault(c => c.Type == "FirstName");
+            var lastNameClaim = User.Claims.FirstOrDefault(c => c.Type == "LastName");
+            var streetNameClaim = User.Claims.FirstOrDefault(c => c.Type == "StreetName");
+            var postalCodeClaim = User.Claims.FirstOrDefault(c => c.Type == "PostalCode");
+            var cityClaim = User.Claims.FirstOrDefault(c => c.Type == "City");
+
+            var viewModel = new UserSignupViewModel
+            {
+               
+                Email = user.Email,
+                FirstName = firstNameClaim?.Value,
+                LastName = lastNameClaim?.Value,
+                StreetName = streetNameClaim?.Value,
+                PostalCode = postalCodeClaim?.Value,
+                City = cityClaim?.Value
+            };
+
+            return View(viewModel);
         }
 
         public IActionResult SignUp()

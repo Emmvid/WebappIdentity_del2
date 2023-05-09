@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System.Security.Claims;
-using WebappIdentity_del2.Services;
+using WebappIdentity_del2.Helpers.Services;
 
-namespace WebappIdentity_del2.Factory
+namespace WebappIdentity_del2.Helpers.Factory
 {
     public class CustomClaimsPrincipalFactory : UserClaimsPrincipalFactory<IdentityUser>
     {
@@ -26,8 +27,17 @@ namespace WebappIdentity_del2.Factory
             claimsIdentity.AddClaims(roles.Select(x => new Claim(ClaimTypes.Role, x)));
 
             claimsIdentity.AddClaim(new Claim("DisplayName", $"{userProfileEntity.FirstName}  {userProfileEntity.LastName}"));
+            if (userProfileEntity != null)
+            {
+                claimsIdentity.AddClaim(new Claim("FirstName", userProfileEntity.FirstName));
+                claimsIdentity.AddClaim(new Claim("LastName", userProfileEntity.LastName));
+                claimsIdentity.AddClaim(new Claim("StreetName", userProfileEntity.StreetName ?? ""));
+                claimsIdentity.AddClaim(new Claim("PostalCode", userProfileEntity.PostalCode ?? ""));
+                claimsIdentity.AddClaim(new Claim("City", userProfileEntity.City ?? ""));
+            }
 
             return claimsIdentity;
         }
     }
+
 }

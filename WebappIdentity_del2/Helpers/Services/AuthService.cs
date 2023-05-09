@@ -5,7 +5,7 @@ using WebappIdentity_del2.Context;
 using WebappIdentity_del2.Models.Entities;
 using WebappIdentity_del2.ViewModels;
 
-namespace WebappIdentity_del2.Services
+namespace WebappIdentity_del2.Helpers.Services
 {
     public class AuthService
     {

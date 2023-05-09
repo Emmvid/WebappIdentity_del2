@@ -1,18 +1,24 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using WebappIdentity_del2.Context;
-using WebappIdentity_del2.Factory;
-using WebappIdentity_del2.Services;
+using WebappIdentity_del2.Helpers.Factory;
+using WebappIdentity_del2.Helpers.Repositories;
+using WebappIdentity_del2.Helpers.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+//Db
 builder.Services.AddDbContext<IdentityContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("IdentityDatabase")));
-builder.Services.AddDbContext<ProductContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("ProductDatabase")));
-builder.Services.AddScoped<AuthService>();
+builder.Services.AddDbContext<ApplicationContext>(x => x.UseSqlServer(builder.Configuration.GetConnectionString("AppDatabase")));
+//user and seed
 builder.Services.AddScoped<SeedService>();
 builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<AuthService>();
+//Product
+builder.Services.AddScoped<ProductRepository>();
+builder.Services.AddScoped<ProductService>();
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(x =>
 {
     x.SignIn.RequireConfirmedAccount = false;

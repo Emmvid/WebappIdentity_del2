@@ -1,13 +1,12 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using WebappIdentity_del2.Services;
 using WebappIdentity_del2.ViewModels;
 
 namespace WebappIdentity_del2.Controllers;
 
 //gör så att bara admin kan komma in
-//[Authorize(Roles =" admin ")]
+[Authorize(Roles =" admin ")]
 public class AdminController : Controller
 {
     
@@ -25,10 +24,10 @@ public class AdminController : Controller
     {
 
         var admins = (await _userManager
-                 .GetUsersInRoleAsync("admin"))
-                 .ToArray();
+                 .GetUsersInRoleAsync("admin"));
+                 
 
-        var everyone = (await _userManager.GetUsersInRoleAsync("user")).ToArray();
+        var everyone = (await _userManager.GetUsersInRoleAsync("user"));
         var model = new AdminViewModel
         {
             Admins = admins,
