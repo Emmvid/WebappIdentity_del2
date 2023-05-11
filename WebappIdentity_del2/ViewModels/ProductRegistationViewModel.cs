@@ -10,7 +10,8 @@ public class ProductRegistationViewModel
     public decimal Price { get; set; }
     public string? Tagline { get; set; }
     public string? Description { get; set; }
-    public HashSet<ProductCategoryEntity>? Categories { get; set; }
+    public List<int> SelectedCategories { get; set; } // List of selected category IDs
+
 
 
 
@@ -26,13 +27,22 @@ public class ProductRegistationViewModel
             Price = viewModel.Price,
             Tagline = viewModel.Tagline,
             Description = viewModel.Description,
-            Categories = viewModel.Categories,
+          
            
         };
         //Kontrollerar om bilden finns, och skapar själva namnet för bilden
         if (viewModel.Image != null)
         {
             entity.ImageUrl = $"{viewModel.ArticleNumber}_{viewModel.Image?.FileName}";
+        }
+
+        entity.Categories = new List<ProductCategoryEntity>();
+        if (viewModel.SelectedCategories != null)
+        {
+            foreach (var categoryId in viewModel.SelectedCategories)
+            {
+                entity.Categories.Add(new ProductCategoryEntity { CategoryId = categoryId });
+            }
         }
         return entity;
     }

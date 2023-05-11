@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebappIdentity_del2.Helpers.Services;
+using WebappIdentity_del2.Models.Dtos;
 using WebappIdentity_del2.ViewModels;
 
 namespace WebappIdentity_del2.Controllers
@@ -38,7 +39,14 @@ namespace WebappIdentity_del2.Controllers
                 var product = await _productService.CreateAsync(viewModel);
                 if(product != null) 
                 {
-                    if(viewModel.Image != null) 
+                    if (viewModel.SelectedCategories != null)
+                    {
+                        foreach (var categoryId in viewModel.SelectedCategories)
+                        {
+                            await _productService.AddCategoryAsync(product, categoryId);
+                        }
+                    }
+                    if (viewModel.Image != null) 
                     await _productService.UploadImageAsync(product, viewModel.Image);
                     
                     return RedirectToAction("Index");

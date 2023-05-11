@@ -29,6 +29,24 @@ public class ProductService
         return null!;
     }
 
+    public async Task<bool> AddCategoryAsync(Product product, int categoryId)
+    {
+        try
+        {
+
+            var entity = await _productRepo.GetAsync(x => x.ArticleNumber == product.ArticleNumber);
+            entity.Categories.Add(new ProductCategoryEntity { CategoryId = categoryId });
+            await _productRepo.AddAsync(entity);
+
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
+
     public async Task<bool> UploadImageAsync(Product product, IFormFile image)
     {
         try { 
