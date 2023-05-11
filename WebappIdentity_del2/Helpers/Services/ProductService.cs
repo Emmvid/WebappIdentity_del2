@@ -43,4 +43,15 @@ public class ProductService
         }
         
     }
+
+    public async Task<IEnumerable<Product>> GetAllAsync()
+    {
+        var items = await _productRepo.GetAllAsync();
+        var list = new List<Product>();
+        foreach (var item in items)
+        {
+            list.Add(item);
+        }
+        return list;
+    }
 }

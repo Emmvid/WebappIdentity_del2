@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using System.ComponentModel.DataAnnotations.Schema;
+using WebappIdentity_del2.Models.Dtos;
 
 namespace WebappIdentity_del2.Models.Entities
 {
@@ -13,5 +14,18 @@ namespace WebappIdentity_del2.Models.Entities
         public string? Phone { get; set; }
         public string? Subject { get; set; }
         public string Message { get; set; } = null!;
+
+        public static implicit operator ContactForm(ContactFormEntity entity)
+        {
+            return new ContactForm
+            {
+                Name = entity.Name,
+                Email = entity.Email,
+                Phone = entity.Phone,
+                Subject = entity.Subject,
+                Message = entity.Message,
+            };
+
+        }
     }
 }

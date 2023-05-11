@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using WebappIdentity_del2.Helpers.Services;
 using WebappIdentity_del2.ViewModels;
 
 namespace WebappIdentity_del2.Controllers
 {
+    [Authorize(Roles = "admin")]
     public class ProductController : Controller
     {
         private readonly ProductService _productService;
@@ -15,7 +17,11 @@ namespace WebappIdentity_del2.Controllers
 
         public async Task<IActionResult> Index()
         {
-            return View();
+            var viewModel = new ProductsViewModel
+            {
+                Products = await _productService.GetAllAsync()
+        };
+            return View(viewModel);
         }
 
         public IActionResult Add()

@@ -4,6 +4,7 @@ using WebappIdentity_del2.Context;
 using WebappIdentity_del2.Helpers.Factory;
 using WebappIdentity_del2.Helpers.Repositories;
 using WebappIdentity_del2.Helpers.Services;
+using WebappIdentity_del2.Models.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,8 @@ builder.Services.AddDbContext<ApplicationContext>(x => x.UseSqlServer(builder.Co
 builder.Services.AddScoped<SeedService>();
 builder.Services.AddScoped<UserService>();
 builder.Services.AddScoped<AuthService>();
+builder.Services.AddScoped<ContactRepository>();
+builder.Services.AddScoped<ContactService>();
 //Product
 builder.Services.AddScoped<ProductRepository>();
 builder.Services.AddScoped<ProductService>();

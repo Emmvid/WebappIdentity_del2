@@ -27,11 +27,11 @@ public class AdminController : Controller
                  .GetUsersInRoleAsync("admin"));
                  
 
-        var everyone = (await _userManager.GetUsersInRoleAsync("user"));
+        var users = (await _userManager.GetUsersInRoleAsync("user"));
         var model = new AdminViewModel
         {
             Admins = admins,
-            Users = everyone,
+            Users = users,
         };
 
 
