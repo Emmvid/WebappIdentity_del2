@@ -4,6 +4,67 @@
 }
 
 <h3>Administrators</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Email</td>
+            <td>Roles</td> <!-- Add a column for roles -->
+        </tr>
+    </thead>
+    @foreach (var user in Model.Admins)
+    {
+        <tr>
+            <td>@user.Id</td>
+            <td>@user.Email</td>
+            <td>
+                <form asp-action="UpdateRoles" asp-controller="Admin">
+                    <input type="hidden" name="userId" value="@user.Id" />
+                    <select name="roleName">
+                        @foreach (var role in Model.Roles)
+                        {
+                            <option value="@role">@role</option>
+                        }
+                    </select>
+                    <button type="submit">Update</button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>
+
+<h3>Users</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <td>Id</td>
+            <td>Email</td>
+            <td>Roles</td> <!-- Add a column for roles -->
+        </tr>
+    </thead>
+    @foreach (var user in Model.Users)
+    {
+        <tr>
+            <td>@user.Id</td>
+            <td>@user.Email</td>
+            <td>
+                <form asp-action="UpdateRoles" asp-controller="Admin">
+                    <input type="hidden" name="userId" value="@user.Id" />
+                    <select name="roleName">
+                        @foreach (var role in Model.Roles)
+                        {
+                            <option value="@role">@role</option>
+                        }
+                    </select>
+                    <button type="submit">Update</button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>
+
+@*
+<h3>Administrators</h3>
 
 <table class="table">
     <thead>
@@ -39,4 +100,4 @@
             <td>@user.Email</td>
         </tr>
     }
-</table>
+</table>*@
