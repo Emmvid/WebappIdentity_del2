@@ -6,7 +6,7 @@ using WebappIdentity_del2.ViewModels;
 
 namespace WebappIdentity_del2.Controllers
 {
-    [Authorize(Roles = "admin")]
+
     public class ProductController : Controller
     {
         private readonly ProductService _productService;
@@ -18,45 +18,19 @@ namespace WebappIdentity_del2.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var viewModel = new ProductsViewModel
+            var viewModel = new ProductSectionViewModel
             {
                 Products = await _productService.GetAllAsync()
         };
             return View(viewModel);
         }
 
-        public IActionResult Add()
+        [HttpGet("product/{id}")]
+        public async Task<IActionResult> Details(string id)
         {
-            return View();
+            var product = await _productService.GetAsync(id);
+
+            return View(product);
         }
-
-        [HttpPost]
-        public async Task<IActionResult> Add(ProductRegistationViewModel viewModel)
-        {
-
-            if(ModelState.IsValid)
-            {
-                var product = await _productService.CreateAsync(viewModel);
-                if(product != null) 
-                {
-                    if (viewModel.SelectedCategories != null)
-                    {
-                        foreach (var categoryId in viewModel.SelectedCategories)
-                        {
-                            await _productService.AddCategoryAsync(product, categoryId);
-                        }
-                    }
-                    if (viewModel.Image != null) 
-                    await _productService.UploadImageAsync(product, viewModel.Image);
-                    
-                    return RedirectToAction("Index");
-                }
-            }
-            ModelState.AddModelError("", "Something went wrong");
-            
-            return View(viewModel);
-        }
-
-
     }
 }

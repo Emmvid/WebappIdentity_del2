@@ -22,9 +22,11 @@ namespace WebappIdentity_del2.Models.Entities
         public ICollection<ProductCategoryEntity> Categories { get; set; } = new HashSet<ProductCategoryEntity>();
 
 
-        public static implicit operator Product(ProductEntity entity)
+        public static implicit operator Product?(ProductEntity entity)
         {
-            return new Product
+
+
+            return entity is not null ? new Product
             {
                 ArticleNumber = entity.ArticleNumber,
                 ImageUrl = entity.ImageUrl,
@@ -33,8 +35,7 @@ namespace WebappIdentity_del2.Models.Entities
                 Description = entity.Description,
                 Price = entity.Price,
                 Categories = entity.Categories,
-
-            };
+            } : null;
         }
     }
 }

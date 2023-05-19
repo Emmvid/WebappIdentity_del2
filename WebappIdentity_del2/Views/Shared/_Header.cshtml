@@ -1,29 +1,38 @@
-﻿<div class="container my-5">
+﻿
+<header>
+    <div class="container">
+        <div class="logo"><img src="images/logo.svg" alt="">bmerketo</div>
+        <div>
+            <nav id="menu" class="menu-links">
+                <a asp-action="Index" asp-controller="Home" class="link"> HOME </a>
+                @if (signInManager.IsSignedIn(User) && User.IsInRole("admin"))
+                {
+                    <a class="link"  asp-action="Index" asp-controller="Admin" > Admin</a>
+                    <a class ="link" asp-action="Add" asp-controller="Admin"> Add new products </a>
 
-    <div class="d-flex justify-content-end align-items-center">
-        <nav>
-            <a asp-action="Index" asp-controller="Home" class="m-4"> Home</a>
-            @if (signInManager.IsSignedIn(User) && User.IsInRole("admin"))
-            {
-                <a asp-action="Index" asp-controller="Admin" class="m-4"> Admin</a>
-                <a asp-action="Add" asp-controller="Product" class="m-4"> Add new products </a>
+                }
+                <a class="link" asp-controller="Product" asp-action="Index">PRODUCTS</a>
+                <a class="link" asp-controller="Contact" asp-action="Index">CONTACT</a>
 
-            }
+                @if (signInManager.IsSignedIn(User))
+                {
+                    <a class="link" asp-action="Index" asp-controller="Account">@User.FindFirst("DisplayName")?.Value</a>
+                    <a class="link" asp-action="SignOut" asp-controller="Account"> Sign out</a>
 
-        </nav>
+                }
+                else
+                {
+                    <a class="link" asp-action="SignUp" asp-controller="Account"> Sign up</a>
+                    <a class="link" asp-action="SignIn" asp-controller="Account"> Sign in</a>
 
-        @if (signInManager.IsSignedIn(User))
-        {
-            <a asp-action="Index" asp-controller="Account">@User.FindFirst("DisplayName")?.Value</a>
-
-            <a asp-action="SignOut" asp-controller="Account" class="m-4"> Sign out</a>
-
-        }
-        else
-        {
-            <a asp-action="SignUp" asp-controller="Account" class="m-4"> Sign up</a>
-            <a asp-action="SignIn" asp-controller="Account" class="m-4"> Sign in</a>
-
-        }
+                }
+            </nav>
+            <div class="toggle">
+                <button class="btn-toggle btn-outline-white" data-option="toggle" data-target="#menu">
+                    <i id="icon" class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
     </div>
-</div>
+</header>
+

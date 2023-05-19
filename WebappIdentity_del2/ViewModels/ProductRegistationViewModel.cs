@@ -10,7 +10,7 @@ public class ProductRegistationViewModel
     public decimal Price { get; set; }
     public string? Tagline { get; set; }
     public string? Description { get; set; }
-    public List<int> SelectedCategories { get; set; } // List of selected category IDs
+    public List<int> SelectedCategories { get; set; } // List of selected categories
 
 
 

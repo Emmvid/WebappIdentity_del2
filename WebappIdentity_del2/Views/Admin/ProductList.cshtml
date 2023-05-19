@@ -1,0 +1,22 @@
+﻿@model ProductSectionViewModel
+@{
+    ViewData["Title"] = "Products";
+}
+
+<div class="container mt-5">
+    @foreach(var product in Model.Products)
+    {
+        <div class=" card mb-3">
+            <div class="card-body">
+                <div class="d-flex justify-content-start align-items-center">
+                    <img src="~/images/products/@product.ImageUrl" alt="@product.ProductName" height="50" width="50" />
+                        <div class="ms-2">
+                            <div>@product.ArticleNumber</div>
+                            <div>@product.ProductName</div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    }
+   
+</div>

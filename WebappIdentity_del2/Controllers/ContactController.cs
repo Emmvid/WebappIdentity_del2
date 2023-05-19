@@ -17,6 +17,7 @@ namespace WebappIdentity_del2.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Index(ContactViewModel model)
         {

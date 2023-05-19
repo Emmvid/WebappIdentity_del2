@@ -10,6 +10,4 @@ public class AdminViewModel
     public IList<IdentityUser> Users { get; set;}
  
     public IList<string> Roles { get; set; }
-    
-
 }

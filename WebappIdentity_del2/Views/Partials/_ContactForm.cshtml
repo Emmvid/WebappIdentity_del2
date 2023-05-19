@@ -1,0 +1,40 @@
+﻿@model ContactViewModel
+<section class="contact-form">
+    <div class="container">
+        <form enctype="multipart/form-data" method="post" asp-action=""  novalidate>
+                <div asp-asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="name form-group">
+                <label asp-for="Name" class="form-label"> Your name* </label>
+                <input asp-for="Name" class="invalid" />
+                <span asp-validation-for="Name" class="small text-danger"></span>
+            </div>
+
+            <div class="email form-group">
+                <label asp-for="Email">Your Email*</label>
+                <input asp-for="Email" class="invalid"/>
+                <span asp-validation-for="Email" class="small text-danger"></span>
+            </div>
+
+            <div class="phoneNumber form-group">
+                <label asp-for="Phone">Phone Number (optional)</label>
+                <input asp-for="Phone" class="invalid">
+                <span asp-validation-for="Phone" class="small text-danger"></span>
+            </div>
+
+            <div class="subject form-group">
+                <label asp-for="Subject" > Subject </label>
+                <input asp-for="Subject" class="invalid" />
+                <span asp-validation-for="Subject" class="small text-danger"></span>
+            </div>
+           
+            <div class="message form-group">
+                <label asp-for="Message">Message*</label>
+                <textarea asp-for="Message" class="invalid"></textarea>
+                <span asp-validation-for="Message" class="small text-danger"></span>
+            </div>
+    
+            <button class="btn-theme">Submit</button>
+        </form>
+    </div>
+</section>

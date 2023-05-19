@@ -1,4 +1,12 @@
-﻿@{
-    ViewData["Title"] = "Home";
-}
+﻿@model List<ProductSectionViewModel>
 
+@foreach (var productSection in Model) 
+{
+    <div>
+        <h2>@productSection.Title</h2>
+        @foreach (var product in productSection.Products)
+        {
+           <partial name="/Views/Partials/_Product.cshtml" model="product"/>
+        }
+    </div>
+}

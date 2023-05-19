@@ -22,7 +22,7 @@ namespace WebappIdentity_del2.Helpers.Repositories
             return entity;
         }
 
-        public virtual async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate)
+        public virtual async Task<TEntity?> GetAsync(Expression<Func<TEntity, bool>> predicate)
         {
             var entity = await _context.Set<TEntity>().FirstOrDefaultAsync(predicate);
             return entity;

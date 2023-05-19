@@ -15,5 +15,19 @@ namespace WebappIdentity_del2.Models.Dtos
 
         public ICollection<ProductCategoryEntity> Categories { get; set; } = new HashSet<ProductCategoryEntity>();
 
+        public static implicit operator ProductEntity(Product product)
+        {
+            var entity = new ProductEntity
+            {
+                ArticleNumber = product.ArticleNumber,
+                ImageUrl = product.ImageUrl,
+                ProductName = product.ProductName,
+                Tagline = product.Tagline,
+                Description = product.Description,
+                Price = product.Price,
+            };
+            
+            return entity;
+        }
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using WebappIdentity_del2.Helpers.Services;
 using WebappIdentity_del2.ViewModels;
 
 namespace WebappIdentity_del2.Controllers;
@@ -13,13 +14,15 @@ public class AdminController : Controller
     
     private readonly UserManager<IdentityUser> _userManager;
     private readonly RoleManager<IdentityRole> _roleManager;
+    private readonly ProductService _productService;
 
 
-    public AdminController(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
+    public AdminController(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, ProductService productService)
     {
 
         _userManager = userManager;
         _roleManager = roleManager;
+        _productService = productService;
     }
     public async Task<IActionResult> Index()
     {
@@ -57,6 +60,47 @@ public class AdminController : Controller
         return View();
     }
 
+    public IActionResult Add()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Add(ProductRegistationViewModel viewModel)
+    {
+
+        if (ModelState.IsValid)
+        {
+            var product = await _productService.CreateAsync(viewModel);
+            if (product != null)
+            {
+                if (viewModel.SelectedCategories != null)
+                {
+                    foreach (var categoryId in viewModel.SelectedCategories)
+                    {
+                        await _productService.AddCategoryAsync(product, categoryId);
+                    }
+                }
+                if (viewModel.Image != null)
+                    await _productService.UploadImageAsync(product, viewModel.Image);
+
+                return RedirectToAction("ProductList");
+            }
+        }
+        ModelState.AddModelError("", "Something went wrong");
+
+        return View(viewModel);
+    }
+
+
+    public async Task<IActionResult> ProductList()
+    {
+        var viewModel = new ProductSectionViewModel
+        {
+            Products = await _productService.GetAllAsync()
+        };
+        return View(viewModel);
+    }
 
 
     /* public async Task<IActionResult> Index()

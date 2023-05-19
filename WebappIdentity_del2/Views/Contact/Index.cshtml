@@ -4,43 +4,13 @@
 }
 <h2> Would you like to contact us? </h2>
 
-<div class="d-flex justify-content-center mt-5">
-    <form enctype="multipart/form-data" method="post" asp-action="" class="col-10 col-lg-6" novalidate>
-        <div asp-asp-validation-summary="ModelOnly" class="text-danger"></div>
+<partial name="/Views/Partials/_ContactForm.cshtml" />
+<h2>Our Contact Information</h2>
+<address> 
+    Email: contact@@bmerketo.com
+    Nacka 12
+    412 33 Stockholm
 
-        <div class="mb-3">
-            <label asp-for="Name" class="form-label"> Name </label>
-            <input asp-for="Name" class="form-control" />
-            <span asp-validation-for="Name" class="small text-danger"></span>
-        </div>
-        <div class="mb-3">
-            <label asp-for="Email" class="form-label"> Email </label>
-            <input asp-for="Email" class="form-control" />
-            <span asp-validation-for="Email" class="small text-danger"></span>
-        </div>
+</address>
+<partial name="/Views/Partials/_Map.cshtml" />
 
-        <div class="mb-3">
-            <label asp-for="Phone" class="form-label"> Phone </label>
-            <input asp-for="Phone" class="form-control" />
-            <span asp-validation-for="Phone" class="small text-danger"></span>
-        </div>
-
-        <div class="mb-3">
-            <label asp-for="Subject" class="form-label"> Subject </label>
-            <input asp-for="Subject" class="form-control" />
-            <span asp-validation-for="Subject" class="small text-danger"></span>
-        </div>
-
-        <div class="mb-3">
-            <label asp-for="Message" class="form-label"> Message </label>
-            <input  asp-for="Message" class="form-control" />
-            <span asp-validation-for="Message" class="small text-danger"></span>
-        </div>
-
-        <div class="mt-5">
-            <div class="d-grid">
-                <button type="submit" class="btn btn-success"> Add </button>
-            </div>
-        </div>
-    </form>
-</div>
