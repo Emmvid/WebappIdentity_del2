@@ -1,12 +1,22 @@
-﻿@model List<ProductSectionViewModel>
+﻿@model HomeViewModel
 
-@foreach (var productSection in Model) 
+ <partial name="/Views/Partials/_ShowCase.cshtml" model="Model.ShowcaseProduct" />
+
+ <section class="best-collection">
+
+@foreach (var productSection in Model.ProductSections) 
 {
-    <div>
-        <h2>@productSection.Title</h2>
+    <div class="container">
+        <h2 class="collection-title">@productSection.Title.ToUpper()</h2>
+            <div class="collection-grid">
         @foreach (var product in productSection.Products)
-        {
+            {
+                
            <partial name="/Views/Partials/_Product.cshtml" model="product"/>
-        }
+               
+            }
+            </div>
     </div>
 }
+
+</section>

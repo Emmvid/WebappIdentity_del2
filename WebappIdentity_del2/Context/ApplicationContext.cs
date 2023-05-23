@@ -8,7 +8,7 @@ public class ApplicationContext : DbContext
     public ApplicationContext(DbContextOptions options) : base(options)
     {
     }
- 
+
 
     public DbSet<ProductEntity> Products { get; set; }
     public DbSet<CategoryEntity> Categories { get; set; }

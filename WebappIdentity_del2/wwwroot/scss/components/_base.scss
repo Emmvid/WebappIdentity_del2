@@ -3,8 +3,6 @@ html, body {
     font-family: $font-roboto;
     font-weight: $font-weight-regular;
     color: $color-dark-3;
-
-       // padding-top: 65px;
     
 }
 
@@ -16,4 +14,4 @@ html, body {
 
 .invalid {
     border: 1px solid $color-theme-1 !important;
-} 
+}

@@ -5,17 +5,12 @@
 
 @if (Model != null)
 {
-    <section class="collection-grid">
-        <div>
-            @if (!string.IsNullOrEmpty(Model.Title))
-            {
-                <h1 class="collection-title">@Model.Title</h1>
-            }
-   
+    <section class="best-collection">
+        <div class="container">
           
             @if (Model.Products != null)
             {
-                <div class="grid">
+                <div class="collection-grid">
                     @foreach (var item in Model.Products)
                     {
                         <partial name="/Views/Partials/_Product.cshtml" model="item"  />

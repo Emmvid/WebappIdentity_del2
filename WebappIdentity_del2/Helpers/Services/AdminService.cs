@@ -24,11 +24,11 @@ public class AdminService
         try
         {
             var user = await _userManager.FindByIdAsync(userId);
-   
+
             var userRoles = await _userManager.GetRolesAsync(user);
             await _userManager.RemoveFromRolesAsync(user, userRoles);
 
-           
+
             await _userManager.AddToRoleAsync(user, roleName);
             return true;
         }

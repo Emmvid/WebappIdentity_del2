@@ -1,7 +1,7 @@
 ﻿
 <header>
     <div class="container">
-        <div class="logo"><img src="images/logo.svg" alt="">bmerketo</div>
+        <a asp-action="Index" asp-controller="Home"> <div class="logo"><img src="images/Logo.svg" alt="bmerketo"></div> </a>
         <div>
             <nav id="menu" class="menu-links">
                 <a asp-action="Index" asp-controller="Home" class="link"> HOME </a>
@@ -9,6 +9,7 @@
                 {
                     <a class="link"  asp-action="Index" asp-controller="Admin" > Admin</a>
                     <a class ="link" asp-action="Add" asp-controller="Admin"> Add new products </a>
+                    <a class="link" asp-action="RegisterUser" asp-controller="Admin"> Add new user </a>
 
                 }
                 <a class="link" asp-controller="Product" asp-action="Index">PRODUCTS</a>

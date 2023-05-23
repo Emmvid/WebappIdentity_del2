@@ -24,15 +24,15 @@ namespace WebappIdentity_del2.Controllers
             if (ModelState.IsValid)
             {
                 var contactForm = await _contactService.CreateAsync(model);
-                
-               
-                    return RedirectToAction("Index");
-                
+
+
+                return RedirectToAction("Index");
+
             }
             ModelState.AddModelError("", "Something went wrong");
 
             return View(model);
-            
+
         }
     }
 }

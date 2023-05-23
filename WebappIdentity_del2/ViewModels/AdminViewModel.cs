@@ -7,7 +7,7 @@ public class AdminViewModel
 {
     public IList<IdentityUser> Admins { get; set; }
 
-    public IList<IdentityUser> Users { get; set;}
- 
+    public IList<IdentityUser> Users { get; set; }
+
     public IList<string> Roles { get; set; }
 }

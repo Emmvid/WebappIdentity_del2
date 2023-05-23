@@ -27,8 +27,8 @@ public class ProductRegistationViewModel
             Price = viewModel.Price,
             Tagline = viewModel.Tagline,
             Description = viewModel.Description,
-          
-           
+
+
         };
         //Kontrollerar om bilden finns, och skapar själva namnet för bilden
         if (viewModel.Image != null)
@@ -46,5 +46,5 @@ public class ProductRegistationViewModel
         }
         return entity;
     }
-    
+
 }

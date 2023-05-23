@@ -1,14 +1,20 @@
-﻿[
+[
   {
     "outputFile": "wwwroot/css/site.css",
-    "inputFile": "wwwroot/css/site.scss"
+    "inputFile": "wwwroot/css/site.scss",
+    "sourceMap": false,
+    "useNodeSass": false
   },
   {
     "outputFile": "wwwroot/scss/style.css",
-    "inputFile": "wwwroot/scss/style.scss"
+    "inputFile": "wwwroot/scss/style.scss",
+    "sourceMap": false,
+    "useNodeSass": false
   },
   {
     "outputFile": "wwwroot/scss/components/_contactform.css",
-    "inputFile": "wwwroot/scss/components/_contactform.scss"
+    "inputFile": "wwwroot/scss/components/_contactform.scss",
+    "sourceMap": false,
+    "useNodeSass": false
   }
 ]

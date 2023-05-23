@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using WebappIdentity_del2.Context;
+﻿using WebappIdentity_del2.Context;
 using WebappIdentity_del2.Helpers.Repositories;
 using WebappIdentity_del2.Models.Dtos;
 using WebappIdentity_del2.Models.Entities;
@@ -53,17 +52,18 @@ public class ProductService
 
     public async Task<bool> UploadImageAsync(Product product, IFormFile image)
     {
-        try { 
-        //Gör så den hittar till själva mappen
-        string imagePath = $"{_webHostEnvironment.WebRootPath}/images/products/{product.ImageUrl}";
-        await image.CopyToAsync(new FileStream(imagePath, FileMode.Create));
+        try
+        {
+            //Gör så den hittar till själva mappen
+            string imagePath = $"{_webHostEnvironment.WebRootPath}/images/products/{product.ImageUrl}";
+            await image.CopyToAsync(new FileStream(imagePath, FileMode.Create));
             return true;
         }
         catch
         {
             return false;
         }
-        
+
     }
 
     public async Task<IEnumerable<Product>> GetAllAsync()
@@ -75,17 +75,17 @@ public class ProductService
             list.Add(item);
         }
         return list;
-    }    
-    
+    }
+
     public async Task<IEnumerable<Product>> GetAllAsync(string categoryName)
     {
         var items = await _productRepo.GetAllAsync(x => x.Categories.Any(y => y.Category.Name == categoryName));
-     
+
         var list = new List<Product>();
         foreach (var item in items)
         {
-                list.Add(item);
-            
+            list.Add(item);
+
         }
         return list;
     }
@@ -95,4 +95,5 @@ public class ProductService
         var _entity = await _productRepo.GetAsync(x => x.ArticleNumber == articleNumber);
         return _entity;
     }
+   
 }

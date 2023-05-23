@@ -19,13 +19,13 @@ namespace WebappIdentity_del2.Controllers
             _userManager = userManager;
         }
 
-      
+
         [Authorize]
         public async Task<IActionResult> Index()
         {
             var user = await _userManager.GetUserAsync(User);
 
-          
+
             var firstNameClaim = User.Claims.FirstOrDefault(c => c.Type == "FirstName");
             var lastNameClaim = User.Claims.FirstOrDefault(c => c.Type == "LastName");
             var streetNameClaim = User.Claims.FirstOrDefault(c => c.Type == "StreetName");
@@ -34,7 +34,7 @@ namespace WebappIdentity_del2.Controllers
 
             var viewModel = new UserSignupViewModel
             {
-               
+
                 Email = user.Email,
                 FirstName = firstNameClaim?.Value,
                 LastName = lastNameClaim?.Value,
@@ -51,11 +51,12 @@ namespace WebappIdentity_del2.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> SignUp(UserSignupViewModel model )
+        public async Task<IActionResult> SignUp(UserSignupViewModel model)
         {
-            if(ModelState.IsValid) {
-                if(await _auth.SignUpAsync(model))
-                return RedirectToAction("SignIn");
+            if (ModelState.IsValid)
+            {
+                if (await _auth.SignUpAsync(model))
+                    return RedirectToAction("SignIn");
 
                 ModelState.AddModelError("", "User with the same email already exists.");
 
@@ -82,12 +83,12 @@ namespace WebappIdentity_del2.Controllers
         [Authorize]
         public async Task<IActionResult> SignOut()
         {
-           if( await _auth.SignOutAsync(User))
+            if (await _auth.SignOutAsync(User))
                 return LocalRedirect("/");
 
             return RedirectToAction("Index");
         }
 
-      
+
     }
 }

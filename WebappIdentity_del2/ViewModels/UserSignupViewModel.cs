@@ -34,7 +34,7 @@ public class UserSignupViewModel
 
     [DataType(DataType.Password)]
     [Compare(nameof(Password))]
-    public string ConfirmPassword{ get; set; } = null!;
+    public string ConfirmPassword { get; set; } = null!;
     public string? PhoneNumber { get; set; }
     public string? StreetName { get; set; }
     public string? PostalCode { get; set; }
@@ -53,7 +53,7 @@ public class UserSignupViewModel
     {
         return new UserProfileEntity
         {
-            
+
             FirstName = model.FirstName,
             LastName = model.LastName,
             StreetName = model.StreetName,

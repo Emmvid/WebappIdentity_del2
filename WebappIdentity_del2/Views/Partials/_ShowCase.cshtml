@@ -1,0 +1,19 @@
+﻿
+@using WebappIdentity_del2.Models.Dtos;
+
+@model Product
+
+
+    <section class="showcase">
+        <div class="container">
+            <div class="content">
+                <div class="ingress">@Model.Tagline</div>
+                <div class="title">@Model.ProductName</div>
+            </div>
+            <div class="content-image">
+                <img src="~/images/products/@Model.ImageUrl" alt="@Model.ProductName">
+            </div>
+        </div>
+    </section>
+
+

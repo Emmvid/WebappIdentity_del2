@@ -1,8 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
 using System.Linq.Expressions;
 using WebappIdentity_del2.Context;
-using WebappIdentity_del2.Models.Dtos;
 using WebappIdentity_del2.Models.Entities;
 
 namespace WebappIdentity_del2.Helpers.Repositories
@@ -18,8 +16,8 @@ namespace WebappIdentity_del2.Helpers.Repositories
         public override async Task<IEnumerable<ProductEntity>> GetAllAsync()
         {
             return await _context.Products.Include(x => x.Categories).ToListAsync();
-        }        
-        
+        }
+
         public async Task<IEnumerable<ProductEntity>> GetAllAsync(Expression<Func<ProductEntity, bool>> predicate)
         {
             return await _context.Products.Where(predicate).ToListAsync();

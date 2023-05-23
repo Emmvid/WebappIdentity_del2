@@ -1,5 +1,4 @@
-﻿using Microsoft.IdentityModel.Tokens;
-using WebappIdentity_del2.Helpers.Repositories;
+﻿using WebappIdentity_del2.Helpers.Repositories;
 using WebappIdentity_del2.Models.Dtos;
 using WebappIdentity_del2.Models.Entities;
 
@@ -16,8 +15,8 @@ namespace WebappIdentity_del2.Helpers.Services
 
         public async Task<ContactForm> CreateAsync(ContactFormEntity entity)
         {
-           
-           var _entity =  await _contactRepo.AddAsync(entity);
+
+            var _entity = await _contactRepo.AddAsync(entity);
             return _entity;
         }
 

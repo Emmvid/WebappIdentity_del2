@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using WebappIdentity_del2.Models.Dtos;
 
@@ -9,10 +8,10 @@ namespace WebappIdentity_del2.Models.Entities
     {
         [Key]
         public string ArticleNumber { get; set; } = null!;
-        public string? ImageUrl { get; set; } 
+        public string? ImageUrl { get; set; }
         public string ProductName { get; set; } = null!;
 
-        public string? Tagline { get; set; } 
+        public string? Tagline { get; set; }
         public string? Description { get; set; }
 
         public decimal Price { get; set; }

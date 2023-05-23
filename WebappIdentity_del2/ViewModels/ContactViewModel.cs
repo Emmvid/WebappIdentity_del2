@@ -1,6 +1,5 @@
 ﻿
 using System.ComponentModel.DataAnnotations;
-using WebappIdentity_del2.Models.Dtos;
 using WebappIdentity_del2.Models.Entities;
 
 namespace WebappIdentity_del2.ViewModels;
@@ -17,7 +16,7 @@ public class ContactViewModel
     [DataType(DataType.EmailAddress)]
     [RegularExpression(@"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$", ErrorMessage = "You have to submit a valid email")]
     public string Email { get; set; } = null!;
-    
+
     public string? Phone { get; set; }
     public string? Subject { get; set; }
 

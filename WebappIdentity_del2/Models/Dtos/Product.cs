@@ -10,7 +10,7 @@ namespace WebappIdentity_del2.Models.Dtos
 
         public string? Tagline { get; set; }
         public string? Description { get; set; }
-        
+
         public decimal Price { get; set; }
 
         public ICollection<ProductCategoryEntity> Categories { get; set; } = new HashSet<ProductCategoryEntity>();
@@ -26,7 +26,7 @@ namespace WebappIdentity_del2.Models.Dtos
                 Description = product.Description,
                 Price = product.Price,
             };
-            
+
             return entity;
         }
     }

@@ -12,7 +12,7 @@
             font-size: 48px;
         }
     }
-    
+
     .categories {
         display: none;
         justify-content: center;
@@ -43,13 +43,14 @@
         @include md {
             grid-template-columns: repeat(2, 1fr);
         }
+
         @include lg {
             grid-template-columns: repeat(3, 1fr);
         }
+
         @include xl {
             grid-template-columns: repeat(4, 1fr);
         }
-
     }
 
     .load-more {

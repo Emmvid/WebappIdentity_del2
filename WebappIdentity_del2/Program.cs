@@ -4,7 +4,6 @@ using WebappIdentity_del2.Context;
 using WebappIdentity_del2.Helpers.Factory;
 using WebappIdentity_del2.Helpers.Repositories;
 using WebappIdentity_del2.Helpers.Services;
-using WebappIdentity_del2.Models.Entities;
 using WebappIdentity_del2.Services;
 
 var builder = WebApplication.CreateBuilder(args);

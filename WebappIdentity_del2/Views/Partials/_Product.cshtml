@@ -1,11 +1,11 @@
 ﻿@using WebappIdentity_del2.Models.Dtos
 @model Product
 
+
 <a asp-controller="product" asp-action="details" asp-route-id="@Model.ArticleNumber" class="collection-item">
         <img src="~/images/products/@Model.ImageUrl" alt="@Model.ProductName">
     <div class="body">
         <div class="title">@Model.ProductName</div>
-        <h1>@Model.ArticleNumber</h1>
         <div class="info">
             <div class="price">$@Model.Price</div>
         </div>

@@ -1,7 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using WebappIdentity_del2.Helpers.Services;
-using WebappIdentity_del2.Models.Dtos;
 using WebappIdentity_del2.ViewModels;
 
 namespace WebappIdentity_del2.Controllers
@@ -21,7 +19,7 @@ namespace WebappIdentity_del2.Controllers
             var viewModel = new ProductSectionViewModel
             {
                 Products = await _productService.GetAllAsync()
-        };
+            };
             return View(viewModel);
         }
 

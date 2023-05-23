@@ -1,0 +1,14 @@
+﻿@using WebappIdentity_del2.Models.Dtos
+@model Product
+@if(Model != null){
+<div>
+    <h1>@Model.ProductName</h1>
+    <img src="~/images/products/@Model.ImageUrl"/>
+    <p>@Model.Tagline</p>
+    <p>@Model.Description</p>
+    <p>@Model.Price</p>
+</div>
+}
+else{
+    <h2> this product doesnt exist</h2>
+}

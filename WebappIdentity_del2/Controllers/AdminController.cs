@@ -8,33 +8,35 @@ using WebappIdentity_del2.ViewModels;
 namespace WebappIdentity_del2.Controllers;
 
 //gör så att bara admin kan komma in
-[Authorize(Roles =" admin ")]
+[Authorize(Roles = " admin ")]
 public class AdminController : Controller
 {
-    
+    #region Constructor and privates
     private readonly UserManager<IdentityUser> _userManager;
     private readonly RoleManager<IdentityRole> _roleManager;
     private readonly ProductService _productService;
+    private readonly AuthService _auth;
 
-
-    public AdminController(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, ProductService productService)
+    public AdminController(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, ProductService productService, AuthService authService)
     {
 
         _userManager = userManager;
         _roleManager = roleManager;
         _productService = productService;
+        _auth = authService;
     }
+    #endregion
     public async Task<IActionResult> Index()
     {
         var admins = await _userManager.GetUsersInRoleAsync("admin");
         var users = await _userManager.GetUsersInRoleAsync("user");
-        var roles = await _roleManager.Roles.Select(r => r.Name).ToListAsync(); // Get all available roles
+        var roles = await _roleManager.Roles.Select(r => r.Name).ToListAsync(); 
 
         var model = new AdminViewModel
         {
             Admins = admins,
             Users = users,
-            Roles = roles // Assign the list of roles to the view model
+            Roles = roles 
         };
 
         return View(model);
@@ -44,19 +46,10 @@ public class AdminController : Controller
     public async Task<IActionResult> UpdateRoles(string userId, string roleName)
     {
         var user = await _userManager.FindByIdAsync(userId);
-        if (user == null)
-        {
-            // Handle error: user not found
-        }
-
-        // Remove all existing roles
         var userRoles = await _userManager.GetRolesAsync(user);
         await _userManager.RemoveFromRolesAsync(user, userRoles);
-
-        // Add the selected role
         await _userManager.AddToRoleAsync(user, roleName);
 
-        // Redirect to the UpdateRoles view with a success flag
         return View();
     }
 
@@ -102,23 +95,22 @@ public class AdminController : Controller
         return View(viewModel);
     }
 
+    public IActionResult RegisterUser()
+    {
+        return View();
+    }
+    [HttpPost]
+    public async Task<IActionResult> RegisterUser(UserSignupViewModel model)
+    {
+        if (ModelState.IsValid)
+        {
+            if (await _auth.SignUpAsync(model))
+                return RedirectToAction("SignIn");
 
-    /* public async Task<IActionResult> Index()
-     {
+            ModelState.AddModelError("", "User with the same email already exists.");
 
-         var admins = (await _userManager
-                  .GetUsersInRoleAsync("admin"));
+        }
+        return View(model);
+    }
 
-
-         var users = (await _userManager.GetUsersInRoleAsync("user"));
-         var model = new AdminViewModel
-         {
-             Admins = admins,
-             Users = users,
-         };
-
-
-         return View(model);
-
-     }*/
 }
