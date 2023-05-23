@@ -1,14 +1,19 @@
 ﻿@using WebappIdentity_del2.Models.Dtos
 @model Product
 @if(Model != null){
-<div>
-    <h1>@Model.ProductName</h1>
-    <img src="~/images/products/@Model.ImageUrl"/>
-    <p>@Model.Tagline</p>
-    <p>@Model.Description</p>
-    <p>@Model.Price</p>
+
+    <div class="container details">
+    <h5 class="title">@Model.ProductName</h5>
+    <img class="left-column" src="~/images/products/@Model.ImageUrl"/>
+    <div class="right-column">
+        <p class="weight">@Model.Tagline</p>
+        <p class="card-text">@Model.Description</p>
+        <p>@Model.Price.ToString("0")$</p>
+        </div>
 </div>
 }
 else{
     <h2> this product doesnt exist</h2>
 }
+
+   

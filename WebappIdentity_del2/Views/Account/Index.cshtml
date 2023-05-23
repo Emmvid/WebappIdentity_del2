@@ -3,29 +3,32 @@
     ViewData["Title"] = "My Account";
 }
 
-<h1> Welcome @User.FindFirst("DisplayName")?.Value </h1>
+<h2> Welcome @User.FindFirst("DisplayName")?.Value </h2>
 <div class="container">
-<h2> Your account details: </h2>
-<div class="mt-4">
-<p class="display-2"> First Name:</p>
-<p> @Model.FirstName</p>
-<p class="display-2"> Last Name:</p>
-        <p> @Model.LastName</p>
-<p class="display-2"> Email:</p>
-<p>@Model.Email</p>
-<p class="display-4">
-    Address
-</p>
-<p> @Model.StreetName </p>
-        <p class="display-4">
-            City
+    <h4> Your account details: </h4>
+
+    <p> Firstname: @Model.FirstName</p>
+
+    <p> Lastname: @Model.LastName</p>
+
+    <p> Email: @Model.Email</p>
+
+    <p>
+        Address: @Model.StreetName
+    </p>
+    <p>  </p>
+    <p>
+        City: @Model.City
+    </p>
+
+    @if (@Model.PhoneNumber != null)
+    {
+        <p>
+            Phone number: @Model.PhoneNumber
         </p>
-        <p> @Model.City </p>
-@if(@Model.PhoneNumber != null){
-        <p class="display-2"> Phone number:</p>
-        <p> @Model.PhoneNumber</p>
-}
-        
+
+    }
+
 </div>
 
 </div>

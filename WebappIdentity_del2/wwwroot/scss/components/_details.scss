@@ -1,0 +1,18 @@
+.details {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    margin-top: 1rem;
+
+  
+    
+
+    .left-column {
+        grid-row: 1;
+        width: 75%;
+    }
+
+    .right-column {
+        grid-row: 1;
+    }
+}
+    

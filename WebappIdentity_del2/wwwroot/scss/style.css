@@ -448,6 +448,19 @@ footer .container {
   align-items: center;
 }
 
+.details {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  margin-top: 1rem;
+}
+.details .left-column {
+  grid-row: 1;
+  width: 75%;
+}
+.details .right-column {
+  grid-row: 1;
+}
+
 .map iframe {
   width: 100%;
   height: 250px;
