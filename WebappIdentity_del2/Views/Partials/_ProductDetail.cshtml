@@ -3,17 +3,18 @@
 @if(Model != null){
 
     <div class="container details">
-    <h5 class="title">@Model.ProductName</h5>
-    <img class="left-column" src="~/images/products/@Model.ImageUrl"/>
+        <h5 class="title">@Model.ProductName</h5>
+    <img class="left-column" src="~/images/products/@Model.ImageUrl" alt="@Model.ProductName"/>
     <div class="right-column">
-        <p class="weight">@Model.Tagline</p>
+        <p class="tagline">@Model.Tagline</p>
         <p class="card-text">@Model.Description</p>
-        <p>@Model.Price.ToString("0")$</p>
+            <p>$@Model.Price</p>
         </div>
 </div>
 }
 else{
-    <h2> this product doesnt exist</h2>
+    <h2> This product is not available right now, take a look at all of our other products!</h2>
+    <a class="btn-theme" asp-action="Index" asp-controller="Product">class="btn-theme" Go to products </a>
 }
 
    

@@ -6,13 +6,14 @@ namespace WebappIdentity_del2.Helpers.Services;
 
 public class UserService
 {
+    #region Private and constructor
     private readonly IdentityContext _identityContext;
 
     public UserService(IdentityContext identityContext)
     {
         _identityContext = identityContext;
     }
-
+    #endregion
     public async Task<UserProfileEntity> GetUserProfileAsync(string userId)
     {
 

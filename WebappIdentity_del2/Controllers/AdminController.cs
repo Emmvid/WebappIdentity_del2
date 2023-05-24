@@ -30,13 +30,13 @@ public class AdminController : Controller
     {
         var admins = await _userManager.GetUsersInRoleAsync("admin");
         var users = await _userManager.GetUsersInRoleAsync("user");
-        var roles = await _roleManager.Roles.Select(r => r.Name).ToListAsync(); 
+        var roles = await _roleManager.Roles.Select(r => r.Name).ToListAsync();
 
         var model = new AdminViewModel
         {
             Admins = admins,
             Users = users,
-            Roles = roles 
+            Roles = roles
         };
 
         return View(model);

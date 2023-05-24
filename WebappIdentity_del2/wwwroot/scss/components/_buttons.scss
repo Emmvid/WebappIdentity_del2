@@ -60,6 +60,7 @@
     background-color: $color-theme-1;
     color: $color-white;
     transition: all 0.25s ease-in-out;
+    margin-bottom:1rem;
 
     &:hover {
         border: 1px solid $color-dark-2;

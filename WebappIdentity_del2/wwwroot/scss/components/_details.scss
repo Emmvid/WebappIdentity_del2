@@ -3,16 +3,26 @@
     grid-template-rows: 1fr 1fr;
     margin-top: 1rem;
 
-  
-    
+
+    .title {
+        color: $color-dark-1;
+        margin-left: 12px;
+    }
+
+    .tagline {
+        color: $color-dark-3;
+    }
 
     .left-column {
         grid-row: 1;
-        width: 75%;
+        width: 60%;
+
+        @include lg {
+            width: 75%;
+        }
     }
 
     .right-column {
         grid-row: 1;
     }
 }
-    

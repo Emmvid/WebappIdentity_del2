@@ -4,20 +4,14 @@ namespace WebappIdentity_del2.Services;
 
 public class AdminService
 {
+    #region Private and constructor
     private readonly UserManager<IdentityUser> _userManager;
 
     public AdminService(UserManager<IdentityUser> userManager)
     {
         _userManager = userManager;
     }
-    /*
-        public async Task<IEnumerable<IdentityUser>> GetAllAdminsAsync(string roleName)
-        {  
-            var userInRole = (await _userManager.GetUsersInRoleAsync(roleName)).ToArray(); 
-
-            return userInRole;
-        }
-     */
+    #endregion
 
     public async Task<bool> UpdateRoles(string userId, string roleName)
     {

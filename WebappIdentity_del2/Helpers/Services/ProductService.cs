@@ -38,7 +38,7 @@ public class ProductService
         {
 
             var entity = await _productRepo.GetAsync(x => x.ArticleNumber == product.ArticleNumber);
-            entity.Categories.Add(new ProductCategoryEntity { CategoryId = categoryId });
+            entity?.Categories.Add(new ProductCategoryEntity { CategoryId = categoryId });
             await _productRepo.AddAsync(entity);
 
             return true;
@@ -95,5 +95,5 @@ public class ProductService
         var _entity = await _productRepo.GetAsync(x => x.ArticleNumber == articleNumber);
         return _entity;
     }
-   
+
 }
