@@ -5,8 +5,11 @@ namespace WebappIdentity_del2.ViewModels;
 
 public class ProductRegistationViewModel
 {
+    [Required]
     public string ArticleNumber { get; set; } = null!;
+    [Required]
     public string ProductName { get; set; } = null!;
+    [Required]
     public decimal Price { get; set; }
     public string? Tagline { get; set; }
     public string? Description { get; set; }

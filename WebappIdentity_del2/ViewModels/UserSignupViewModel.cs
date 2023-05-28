@@ -31,7 +31,6 @@ public class UserSignupViewModel
     [Required(ErrorMessage = "You have to confirm your password")]
     [RegularExpression(@"^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[^a-zA-Z0-9]).{8,}$", ErrorMessage = "The passwords doesn't match")]
     [Display(Name = "Password *")]
-
     [DataType(DataType.Password)]
     [Compare(nameof(Password))]
     public string ConfirmPassword { get; set; } = null!;

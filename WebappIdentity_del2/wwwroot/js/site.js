@@ -53,3 +53,17 @@ try {
 } catch { }
 footerPosition('footer', document.body.scrollHeight, window.innerHeight)
 //toggleMenu('[data-option="toggle"')
+
+
+// validating contact form
+
+const email = document.querySelector(".email");
+console.log(email)
+
+email.addEventListener("input", (event) => {
+    if (email.validity.typeMismatch) {
+        email.setCustomValidity("I am expecting an email address!");
+    } else {
+        email.setCustomValidity("");
+    }
+});

@@ -6,8 +6,5 @@ namespace WebappIdentity_del2.ViewModels
     {
         public IEnumerable<Product> Products { get; set; } = new List<Product>();
         public string Title { get; set; } = "";
-
-    
-
     }
 }
